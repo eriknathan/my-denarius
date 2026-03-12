@@ -28,4 +28,5 @@ urlpatterns = [
     path('categorias/', include('categories.urls')),
     path('transacoes/', include('transactions.urls')),
     path('perfil/', include('profiles.urls')),
+    path('chat/', include('chat.urls')),
 ]
