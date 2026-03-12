@@ -78,58 +78,58 @@
 
 ---
 
-### 🏃 SPRINT 2 — Perfis, Templates Base e Site Público
+### ✅ SPRINT 2 — Perfis, Templates Base e Site Público
 
 #### Tarefa 2.1 — Model de Perfil (app `profiles`)
-- [ ] 2.1.1 — Criar `profiles/models.py` com classe `Profile`
-- [ ] 2.1.2 — Definir campo `user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=CASCADE)`
-- [ ] 2.1.3 — Definir campo `phone = models.CharField(max_length=20, blank=True)`
-- [ ] 2.1.4 — Adicionar `created_at` e `updated_at` com `auto_now_add` e `auto_now`
-- [ ] 2.1.5 — Criar e aplicar migration do model `Profile`
-- [ ] 2.1.6 — Registrar `Profile` no `profiles/admin.py`
+- [X] 2.1.1 — Criar `profiles/models.py` com classe `Profile`
+- [X] 2.1.2 — Definir campo `user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=CASCADE)`
+- [X] 2.1.3 — Definir campo `phone = models.CharField(max_length=20, blank=True)`
+- [X] 2.1.4 — Adicionar `created_at` e `updated_at` com `auto_now_add` e `auto_now`
+- [X] 2.1.5 — Criar e aplicar migration do model `Profile`
+- [X] 2.1.6 — Registrar `Profile` no `profiles/admin.py`
 
 #### Tarefa 2.2 — Signal de criação de perfil
-- [ ] 2.2.1 — Criar `profiles/signals.py`
-- [ ] 2.2.2 — Implementar signal `post_save` no model `User` para criar `Profile` automaticamente
-- [ ] 2.2.3 — Conectar o signal em `profiles/apps.py` no método `ready()`
+- [X] 2.2.1 — Criar `profiles/signals.py`
+- [X] 2.2.2 — Implementar signal `post_save` no model `User` para criar `Profile` automaticamente
+- [X] 2.2.3 — Conectar o signal em `profiles/apps.py` no método `ready()`
 
 #### Tarefa 2.3 — Template base (`base.html`)
-- [ ] 2.3.1 — Criar `templates/base.html` com estrutura HTML5 completa
-- [ ] 2.3.2 — Incluir link do TailwindCSS CDN e da fonte Inter
-- [ ] 2.3.3 — Definir blocos: `{% block title %}`, `{% block content %}`, `{% block extra_js %}`
-- [ ] 2.3.4 — Incluir `{% include 'partials/_messages.html' %}` no body
+- [X] 2.3.1 — Criar `templates/base.html` com estrutura HTML5 completa
+- [X] 2.3.2 — Incluir link do TailwindCSS CDN e da fonte Inter
+- [X] 2.3.3 — Definir blocos: `{% block title %}`, `{% block content %}`, `{% block extra_js %}`
+- [X] 2.3.4 — Incluir `{% include 'partials/_messages.html' %}` no body
 
 #### Tarefa 2.4 — Partial de mensagens
-- [ ] 2.4.1 — Criar `templates/partials/_messages.html` com loop `{% for message in messages %}`
-- [ ] 2.4.2 — Aplicar classes CSS condicionais por tipo de mensagem (success=verde, error=vermelho)
+- [X] 2.4.1 — Criar `templates/partials/_messages.html` com loop `{% for message in messages %}`
+- [X] 2.4.2 — Aplicar classes CSS condicionais por tipo de mensagem (success=verde, error=vermelho)
 
 #### Tarefa 2.5 — Template base autenticado (com sidebar)
-- [ ] 2.5.1 — Criar `templates/base_app.html` herdando de `base.html`
-- [ ] 2.5.2 — Incluir `{% include 'partials/_sidebar.html' %}`
-- [ ] 2.5.3 — Definir área de conteúdo principal com padding e background gray-50
+- [X] 2.5.1 — Criar `templates/base_app.html` herdando de `base.html`
+- [X] 2.5.2 — Incluir `{% include 'partials/_sidebar.html' %}`
+- [X] 2.5.3 — Definir área de conteúdo principal com padding e background gray-50
 
 #### Tarefa 2.6 — Partial da sidebar
-- [ ] 2.6.1 — Criar `templates/partials/_sidebar.html` com estrutura da sidebar
-- [ ] 2.6.2 — Adicionar logo "my-denarius" com gradiente verde
-- [ ] 2.6.3 — Adicionar links de navegação: Dashboard, Contas, Categorias, Transações, Perfil
-- [ ] 2.6.4 — Adicionar link de Sair (logout) na parte inferior da sidebar
-- [ ] 2.6.5 — Marcar link ativo com `request.resolver_match.url_name` para highlight visual
+- [X] 2.6.1 — Criar `templates/partials/_sidebar.html` com estrutura da sidebar
+- [X] 2.6.2 — Adicionar logo "my-denarius" com gradiente verde
+- [X] 2.6.3 — Adicionar links de navegação: Dashboard, Contas, Categorias, Transações, Perfil
+- [X] 2.6.4 — Adicionar link de Sair (logout) na parte inferior da sidebar
+- [X] 2.6.5 — Marcar link ativo com `request.resolver_match.url_name` para highlight visual
 
 #### Tarefa 2.7 — Site público (home)
-- [ ] 2.7.1 — Criar view `HomeView` (TemplateView) em um arquivo `views.py` na raiz ou app dedicado
-- [ ] 2.7.2 — Criar `templates/public/home.html` herdando de `base.html`
-- [ ] 2.7.3 — Implementar seção hero com gradiente verde e chamada para ação
-- [ ] 2.7.4 — Adicionar navbar pública com logo, botão "Entrar" e "Cadastre-se"
-- [ ] 2.7.5 — Adicionar seção de features/benefícios (3 cards simples)
-- [ ] 2.7.6 — Criar rota `''` (raiz) mapeada para `HomeView` em `core/urls.py`
+- [X] 2.7.1 — Criar view `HomeView` (TemplateView) em um arquivo `views.py` na raiz ou app dedicado
+- [X] 2.7.2 — Criar `templates/public/home.html` herdando de `base.html`
+- [X] 2.7.3 — Implementar seção hero com gradiente verde e chamada para ação
+- [X] 2.7.4 — Adicionar navbar pública com logo, botão "Entrar" e "Cadastre-se"
+- [X] 2.7.5 — Adicionar seção de features/benefícios (3 cards simples)
+- [X] 2.7.6 — Criar rota `''` (raiz) mapeada para `HomeView` em `core/urls.py`
 
 #### Tarefa 2.8 — Templates de autenticação
-- [ ] 2.8.1 — Criar `templates/users/register.html` herdando de `base.html`
-- [ ] 2.8.2 — Renderizar o `UserRegistrationForm` com card centralizado e design do sistema
-- [ ] 2.8.3 — Criar `templates/users/login.html` herdando de `base.html`
-- [ ] 2.8.4 — Renderizar o `UserLoginForm` com card centralizado e design do sistema
-- [ ] 2.8.5 — Adicionar link "Não tem conta? Cadastre-se" na página de login
-- [ ] 2.8.6 — Adicionar link "Já tem conta? Entre" na página de cadastro
+- [X] 2.8.1 — Criar `templates/users/register.html` herdando de `base.html`
+- [X] 2.8.2 — Renderizar o `UserRegistrationForm` com card centralizado e design do sistema
+- [X] 2.8.3 — Criar `templates/users/login.html` herdando de `base.html`
+- [X] 2.8.4 — Renderizar o `UserLoginForm` com card centralizado e design do sistema
+- [X] 2.8.5 — Adicionar link "Não tem conta? Cadastre-se" na página de login
+- [X] 2.8.6 — Adicionar link "Já tem conta? Entre" na página de cadastro
 
 ---
 
