@@ -3,15 +3,19 @@
 {% block title %}Meu Perfil{% endblock %}
 
 {% block app_content %}
-<div class="p-6 max-w-2xl">
+<div class="p-4 sm:p-6 w-full max-w-2xl">
 
   <div class="flex items-center justify-between mb-6">
-    <h1 class="text-2xl font-bold text-gray-800">Meu Perfil</h1>
+    <h1 class="text-xl sm:text-2xl font-bold text-gray-800">Meu Perfil</h1>
     <a href="{% url 'profiles:update' %}"
-       class="inline-flex items-center px-4 py-2 bg-emerald-600 hover:bg-emerald-700
+       class="inline-flex items-center px-3 sm:px-4 py-2 bg-emerald-600 hover:bg-emerald-700
               text-white text-sm font-medium rounded-lg transition-colors duration-200
               focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
-      Editar Perfil
+      <svg class="w-4 h-4 sm:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+      </svg>
+      <span class="hidden sm:inline">Editar Perfil</span>
     </a>
   </div>
 
@@ -20,9 +24,9 @@
   <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
 
     <!-- Cabeçalho com avatar -->
-    <div class="px-6 py-6 border-b border-gray-100 flex items-center gap-4">
-      <div class="w-14 h-14 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-        <span class="text-xl font-bold text-emerald-700">
+    <div class="px-4 sm:px-6 py-5 sm:py-6 border-b border-gray-100 flex items-center gap-4">
+      <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+        <span class="text-lg sm:text-xl font-bold text-emerald-700">
           {% if profile.user.first_name %}
             {{ profile.user.first_name|slice:":1"|upper }}{% if profile.user.last_name %}{{ profile.user.last_name|slice:":1"|upper }}{% endif %}
           {% else %}
@@ -30,24 +34,24 @@
           {% endif %}
         </span>
       </div>
-      <div>
-        <p class="text-base font-semibold text-gray-800">
+      <div class="min-w-0">
+        <p class="text-base font-semibold text-gray-800 truncate">
           {% if profile.user.first_name or profile.user.last_name %}
             {{ profile.user.first_name }} {{ profile.user.last_name }}
           {% else %}
             <span class="text-gray-400">Nome não informado</span>
           {% endif %}
         </p>
-        <p class="text-sm text-gray-500">{{ profile.user.email }}</p>
+        <p class="text-sm text-gray-500 truncate">{{ profile.user.email }}</p>
       </div>
     </div>
 
     <!-- Dados do perfil -->
     <div class="divide-y divide-gray-100">
 
-      <div class="px-6 py-4 flex items-center justify-between">
-        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider w-32 shrink-0">Nome</p>
-        <p class="text-sm text-gray-800 flex-1">
+      <div class="px-4 sm:px-6 py-4">
+        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Nome</p>
+        <p class="text-sm text-gray-800">
           {% if profile.user.first_name %}
             {{ profile.user.first_name }}
           {% else %}
@@ -56,9 +60,9 @@
         </p>
       </div>
 
-      <div class="px-6 py-4 flex items-center justify-between">
-        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider w-32 shrink-0">Sobrenome</p>
-        <p class="text-sm text-gray-800 flex-1">
+      <div class="px-4 sm:px-6 py-4">
+        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Sobrenome</p>
+        <p class="text-sm text-gray-800">
           {% if profile.user.last_name %}
             {{ profile.user.last_name }}
           {% else %}
@@ -67,14 +71,14 @@
         </p>
       </div>
 
-      <div class="px-6 py-4 flex items-center justify-between">
-        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider w-32 shrink-0">E-mail</p>
-        <p class="text-sm text-gray-800 flex-1">{{ profile.user.email }}</p>
+      <div class="px-4 sm:px-6 py-4">
+        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">E-mail</p>
+        <p class="text-sm text-gray-800 break-all">{{ profile.user.email }}</p>
       </div>
 
-      <div class="px-6 py-4 flex items-center justify-between">
-        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider w-32 shrink-0">Telefone</p>
-        <p class="text-sm text-gray-800 flex-1">
+      <div class="px-4 sm:px-6 py-4">
+        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Telefone</p>
+        <p class="text-sm text-gray-800">
           {% if profile.phone %}
             {{ profile.phone }}
           {% else %}

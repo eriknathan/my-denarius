@@ -3,7 +3,7 @@
 {% block title %}Criar conta{% endblock %}
 
 {% block content %}
-<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-12">
+<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-8 sm:py-12">
   <div class="w-full max-w-md">
 
     <!-- Logo -->
@@ -18,7 +18,7 @@
     </div>
 
     <!-- Card do formulário -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
 
       {% include 'partials/_messages.html' %}
 
@@ -28,7 +28,7 @@
         <div class="space-y-5">
 
           <!-- Nome e sobrenome lado a lado -->
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
             <!-- Nome -->
             <div>

@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
@@ -23,6 +24,7 @@ class CategoryCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        messages.success(self.request, 'Categoria criada com sucesso.')
         return super().form_valid(form)
 
 
@@ -35,6 +37,10 @@ class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     def get_queryset(self):
         return Category.objects.filter(user=self.request.user)
 
+    def form_valid(self, form):
+        messages.success(self.request, 'Categoria atualizada com sucesso.')
+        return super().form_valid(form)
+
 
 class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     model = Category
@@ -43,3 +49,7 @@ class CategoryDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self):
         return Category.objects.filter(user=self.request.user)
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Categoria excluída com sucesso.')
+        return super().form_valid(form)

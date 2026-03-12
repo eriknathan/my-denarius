@@ -5,9 +5,66 @@
 
   {% include 'partials/_sidebar.html' %}
 
-  <main class="flex-1 min-w-0 overflow-y-auto">
-    {% block app_content %}{% endblock %}
-  </main>
+  <!-- Overlay para fechar o menu móvel -->
+  <div id="sidebar-overlay"
+       class="fixed inset-0 bg-black/40 z-20 hidden md:hidden"
+       onclick="closeSidebar()">
+  </div>
+
+  <div class="flex-1 min-w-0 flex flex-col">
+
+    <!-- Topbar móvel -->
+    <header class="md:hidden bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between shrink-0 sticky top-0 z-10">
+      <button type="button"
+              onclick="openSidebar()"
+              class="p-2 rounded-lg text-gray-500 hover:text-emerald-700 hover:bg-emerald-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              aria-label="Abrir menu">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <span class="text-lg font-bold bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
+        my-denarius
+      </span>
+
+      <!-- Acesso rápido: Nova Transação -->
+      <a href="{% url 'transactions:create' %}"
+         class="p-2 rounded-lg text-gray-500 hover:text-emerald-700 hover:bg-emerald-50 transition-colors duration-200"
+         title="Nova Transação">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+        </svg>
+      </a>
+    </header>
+
+    <main class="flex-1 min-w-0 overflow-y-auto">
+      {% block app_content %}{% endblock %}
+    </main>
+
+  </div>
 
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  function openSidebar() {
+    document.getElementById('mobile-sidebar').classList.remove('-translate-x-full');
+    document.getElementById('sidebar-overlay').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeSidebar() {
+    document.getElementById('mobile-sidebar').classList.add('-translate-x-full');
+    document.getElementById('sidebar-overlay').classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  // Fechar com Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeSidebar();
+  });
+</script>
 {% endblock %}

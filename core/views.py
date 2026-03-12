@@ -26,6 +26,18 @@ class DashboardView(LoginRequiredMixin, TemplateView):
             total=Sum('initial_balance')
         )['total'] or Decimal('0.00')
 
+        all_income = Transaction.objects.filter(
+            user=user,
+            transaction_type='income',
+        ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
+
+        all_expenses = Transaction.objects.filter(
+            user=user,
+            transaction_type='expense',
+        ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
+
+        current_balance = total_balance + all_income - all_expenses
+
         total_income = Transaction.objects.filter(
             user=user,
             transaction_type='income',
@@ -40,12 +52,15 @@ class DashboardView(LoginRequiredMixin, TemplateView):
             date__year=today.year,
         ).aggregate(total=Sum('amount'))['total'] or Decimal('0.00')
 
+        net_month = total_income - total_expenses
+
         recent_transactions = Transaction.objects.filter(
             user=user,
         ).select_related('account', 'category')[:5]
 
-        context['total_balance'] = total_balance
+        context['current_balance'] = current_balance
         context['total_income'] = total_income
         context['total_expenses'] = total_expenses
+        context['net_month'] = net_month
         context['recent_transactions'] = recent_transactions
         return context

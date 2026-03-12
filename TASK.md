@@ -299,31 +299,31 @@
 
 ---
 
-### 🏃 SPRINT 8 — Polimento, Ajustes e README
+### ✅ SPRINT 8 — Polimento, Ajustes e README
 
 #### Tarefa 8.1 — Revisão do design system
-- [ ] 8.1.1 — Revisar todos os templates e garantir consistência visual
-- [ ] 8.1.2 — Verificar responsividade em mobile (320px) e desktop (1280px+)
-- [ ] 8.1.3 — Garantir que todos os formulários exibem erros de validação com estilo correto
-- [ ] 8.1.4 — Verificar se as mensagens Django (success/error) aparecem em todas as ações
+- [X] 8.1.1 — Revisar todos os templates e garantir consistência visual
+- [X] 8.1.2 — Verificar responsividade em mobile (320px) e desktop (1280px+)
+- [X] 8.1.3 — Garantir que todos os formulários exibem erros de validação com estilo correto
+- [X] 8.1.4 — Verificar se as mensagens Django (success/error) aparecem em todas as ações
 
 #### Tarefa 8.2 — Segurança e edge cases
-- [ ] 8.2.1 — Verificar que todas as views protegidas usam `LoginRequiredMixin`
-- [ ] 8.2.2 — Verificar que todos os querysets filtram por `request.user`
-- [ ] 8.2.3 — Testar acesso a recursos de outro usuário via URL direta (deve retornar 404)
-- [ ] 8.2.4 — Verificar que o `{% csrf_token %}` está em todos os formulários
+- [X] 8.2.1 — Verificar que todas as views protegidas usam `LoginRequiredMixin`
+- [X] 8.2.2 — Verificar que todos os querysets filtram por `request.user`
+- [X] 8.2.3 — Testar acesso a recursos de outro usuário via URL direta (deve retornar 404)
+- [X] 8.2.4 — Verificar que o `{% csrf_token %}` está em todos os formulários
 
 #### Tarefa 8.3 — Configuração do admin
-- [ ] 8.3.1 — Verificar registro de todos os models no admin
-- [ ] 8.3.2 — Configurar `list_display` e `list_filter` relevantes em cada admin
-- [ ] 8.3.3 — Criar superusuário padrão para dev (`python manage.py createsuperuser`)
+- [X] 8.3.1 — Verificar registro de todos os models no admin
+- [X] 8.3.2 — Configurar `list_display` e `list_filter` relevantes em cada admin
+- [X] 8.3.3 — Criar superusuário padrão para dev (`python manage.py createsuperuser`)
 
 #### Tarefa 8.4 — README do projeto
-- [ ] 8.4.1 — Criar `README.md` na raiz do projeto
-- [ ] 8.4.2 — Documentar: visão geral, requisitos, instalação passo a passo
-- [ ] 8.4.3 — Documentar: como rodar o projeto em desenvolvimento
-- [ ] 8.4.4 — Documentar: estrutura de diretórios e apps
-- [ ] 8.4.5 — Documentar: decisões técnicas (login por e-mail, custom user model)
+- [X] 8.4.1 — Criar `README.md` na raiz do projeto
+- [X] 8.4.2 — Documentar: visão geral, requisitos, instalação passo a passo
+- [X] 8.4.3 — Documentar: como rodar o projeto em desenvolvimento
+- [X] 8.4.4 — Documentar: estrutura de diretórios e apps
+- [X] 8.4.5 — Documentar: decisões técnicas (login por e-mail, custom user model)
 
 ---
 

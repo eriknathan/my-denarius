@@ -3,17 +3,17 @@
 {% block title %}{% if object %}Editar Conta{% else %}Nova Conta{% endif %}{% endblock %}
 
 {% block app_content %}
-<div class="p-6">
+<div class="p-4 sm:p-6">
 
   <div class="mb-6">
-    <h1 class="text-2xl font-bold text-gray-800">
+    <h1 class="text-xl sm:text-2xl font-bold text-gray-800">
       {% if object %}Editar Conta{% else %}Nova Conta{% endif %}
     </h1>
   </div>
 
   {% include 'partials/_messages.html' %}
 
-  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 max-w-lg">
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-4 sm:p-6 w-full max-w-lg">
     <form method="post">
       {% csrf_token %}
       <div class="space-y-4">
@@ -50,17 +50,18 @@
 
       </div>
 
-      <div class="flex gap-3 mt-6">
+      <div class="flex flex-col sm:flex-row gap-3 mt-6">
         <button type="submit"
-                class="inline-flex items-center px-4 py-2 bg-emerald-600 hover:bg-emerald-700
-                       text-white text-sm font-medium rounded-lg transition-colors duration-200
+                class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2.5 sm:py-2
+                       bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium
+                       rounded-lg transition-colors duration-200
                        focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
           Salvar
         </button>
         <a href="{% url 'accounts:list' %}"
-           class="inline-flex items-center px-4 py-2 border border-gray-300
-                  bg-white hover:bg-gray-50 text-gray-700 text-sm font-medium
-                  rounded-lg transition-colors duration-200">
+           class="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2.5 sm:py-2
+                  border border-gray-300 bg-white hover:bg-gray-50 text-gray-700
+                  text-sm font-medium rounded-lg transition-colors duration-200">
           Cancelar
         </a>
       </div>
