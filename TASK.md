@@ -2,7 +2,7 @@
 
 ---
 
-### 🏃 SPRINT 0 — Setup e Infraestrutura do Projeto
+### ✅ SPRINT 0 — Setup e Infraestrutura do Projeto
 
 #### Tarefa 0.1 — Configuração do ambiente de desenvolvimento
 - [X] 0.1.1 — Criar o virtualenv Python (`python -m venv .venv`)
@@ -21,59 +21,60 @@
 - [X] 0.2.6 — Registrar todas as apps em `INSTALLED_APPS` no `settings.py`
 
 #### Tarefa 0.3 — Configuração do settings.py
-- [ ] 0.3.1 — Configurar `LANGUAGE_CODE = 'pt-br'` e `TIME_ZONE = 'America/Sao_Paulo'`
-- [ ] 0.3.2 — Configurar `TEMPLATES` com `DIRS` apontando para a pasta `templates/` na raiz
-- [ ] 0.3.3 — Configurar `STATIC_URL` e `STATICFILES_DIRS`
-- [ ] 0.3.4 — Configurar `LOGIN_URL`, `LOGIN_REDIRECT_URL` e `LOGOUT_REDIRECT_URL`
-- [ ] 0.3.5 — Configurar `AUTH_USER_MODEL = 'users.User'`
-- [ ] 0.3.6 — Configurar `AUTHENTICATION_BACKENDS` para o backend por e-mail
+- [X] 0.3.1 — Configurar `LANGUAGE_CODE = 'pt-br'` e `TIME_ZONE = 'America/Sao_Paulo'`
+- [X] 0.3.2 — Configurar `TEMPLATES` com `DIRS` apontando para a pasta `templates/` na raiz
+- [X] 0.3.3 — Configurar `STATIC_URL` e `STATICFILES_DIRS`
+- [X] 0.3.4 — Configurar `LOGIN_URL`, `LOGIN_REDIRECT_URL` e `LOGOUT_REDIRECT_URL`
+- [X] 0.3.5 — Configurar `AUTH_USER_MODEL = 'users.User'`
+- [X] 0.3.6 — Configurar `AUTHENTICATION_BACKENDS` para o backend por e-mail
 
 #### Tarefa 0.4 — Estrutura de templates e static
-- [ ] 0.4.1 — Criar pasta `templates/` na raiz do projeto
-- [ ] 0.4.2 — Criar subpastas: `templates/public/`, `templates/users/`, `templates/dashboard/`, `templates/accounts/`, `templates/categories/`, `templates/transactions/`, `templates/profiles/`, `templates/partials/`
-- [ ] 0.4.3 — Criar pasta `static/css/` na raiz do projeto
+- [X] 0.4.1 — Criar pasta `templates/` na raiz do projeto
+- [X] 0.4.2 — Criar subpastas: `templates/public/`, `templates/users/`, `templates/dashboard/`, `templates/accounts/`, `templates/categories/`, `templates/transactions/`, `templates/profiles/`, `templates/partials/`
+- [X] 0.4.3 — Criar pasta `static/css/` na raiz do projeto
+- [X] 0.4.4 - Crie os arquivos de .env e .env.example
 
 #### Tarefa 0.5 — Configuração do TailwindCSS
-- [ ] 0.5.1 — Adicionar link do TailwindCSS CDN no `base.html` para desenvolvimento (`<script src="https://cdn.tailwindcss.com"></script>`)
-- [ ] 0.5.2 — Adicionar link da fonte Inter do Google Fonts no `base.html`
-- [ ] 0.5.3 — Documentar no README que o CDN é para dev e que CLI deve ser configurado antes do deploy
+- [X] 0.5.1 — Adicionar link do TailwindCSS CDN no `base.html` para desenvolvimento (`<script src="https://cdn.tailwindcss.com"></script>`)
+- [X] 0.5.2 — Adicionar link da fonte Inter do Google Fonts no `base.html`
+- [X] 0.5.3 — Documentar no README que o CDN é para dev e que CLI deve ser configurado antes do deploy
 
 ---
 
-### 🏃 SPRINT 1 — Model de Usuário e Autenticação
+### ✅ SPRINT 1 — Model de Usuário e Autenticação
 
 #### Tarefa 1.1 — Custom User Model (app `users`)
-- [ ] 1.1.1 — Criar `users/models.py` com a classe `User` herdando de `AbstractUser`
-- [ ] 1.1.2 — Definir `email` como campo obrigatório e único (`unique=True`)
-- [ ] 1.1.3 — Definir `username = None` para remover o campo username
-- [ ] 1.1.4 — Definir `USERNAME_FIELD = 'email'` e `REQUIRED_FIELDS = ['first_name', 'last_name']`
-- [ ] 1.1.5 — Adicionar campos `created_at = models.DateTimeField(auto_now_add=True)` e `updated_at = models.DateTimeField(auto_now=True)`
-- [ ] 1.1.6 — Criar e aplicar migration do model `User`
+- [X] 1.1.1 — Criar `users/models.py` com a classe `User` herdando de `AbstractUser`
+- [X] 1.1.2 — Definir `email` como campo obrigatório e único (`unique=True`)
+- [X] 1.1.3 — Definir `username = None` para remover o campo username
+- [X] 1.1.4 — Definir `USERNAME_FIELD = 'email'` e `REQUIRED_FIELDS = ['first_name', 'last_name']`
+- [X] 1.1.5 — Adicionar campos `created_at = models.DateTimeField(auto_now_add=True)` e `updated_at = models.DateTimeField(auto_now=True)`
+- [X] 1.1.6 — Criar e aplicar migration do model `User`
 
 #### Tarefa 1.2 — Backend de autenticação por e-mail
-- [ ] 1.2.1 — Criar `users/backends.py` com classe `EmailBackend` herdando de `ModelBackend`
-- [ ] 1.2.2 — Implementar método `authenticate(request, username=None, password=None)` que busca por e-mail
-- [ ] 1.2.3 — Registrar o backend em `settings.py` em `AUTHENTICATION_BACKENDS`
+- [X] 1.2.1 — Criar `users/backends.py` com classe `EmailBackend` herdando de `ModelBackend`
+- [X] 1.2.2 — Implementar método `authenticate(request, username=None, password=None)` que busca por e-mail
+- [X] 1.2.3 — Registrar o backend em `settings.py` em `AUTHENTICATION_BACKENDS`
 
 #### Tarefa 1.3 — Formulários de autenticação (app `users`)
-- [ ] 1.3.1 — Criar `users/forms.py` com `UserRegistrationForm` herdando de `UserCreationForm`
-- [ ] 1.3.2 — Definir os campos: `first_name`, `last_name`, `email`, `password1`, `password2`
-- [ ] 1.3.3 — Criar `UserLoginForm` com campos `email` e `password`
-- [ ] 1.3.4 — Aplicar classes CSS do design system nos widgets dos campos dos formulários
+- [X] 1.3.1 — Criar `users/forms.py` com `UserRegistrationForm` herdando de `UserCreationForm`
+- [X] 1.3.2 — Definir os campos: `first_name`, `last_name`, `email`, `password1`, `password2`
+- [X] 1.3.3 — Criar `UserLoginForm` com campos `email` e `password`
+- [X] 1.3.4 — Aplicar classes CSS do design system nos widgets dos campos dos formulários
 
 #### Tarefa 1.4 — Views de autenticação (app `users`)
-- [ ] 1.4.1 — Criar `users/views.py` com `RegisterView` (CreateView ou FormView) para cadastro
-- [ ] 1.4.2 — Criar `LoginView` customizada (herdando de `django.contrib.auth.views.LoginView`) usando o form com e-mail
-- [ ] 1.4.3 — Criar `LogoutView` customizada (herdando de `django.contrib.auth.views.LogoutView`)
-- [ ] 1.4.4 — Configurar `success_url` do `RegisterView` para redirecionar ao dashboard
+- [X] 1.4.1 — Criar `users/views.py` com `RegisterView` (CreateView ou FormView) para cadastro
+- [X] 1.4.2 — Criar `LoginView` customizada (herdando de `django.contrib.auth.views.LoginView`) usando o form com e-mail
+- [X] 1.4.3 — Criar `LogoutView` customizada (herdando de `django.contrib.auth.views.LogoutView`)
+- [X] 1.4.4 — Configurar `success_url` do `RegisterView` para redirecionar ao dashboard
 
 #### Tarefa 1.5 — URLs de autenticação
-- [ ] 1.5.1 — Criar `users/urls.py` com rotas: `register/`, `login/`, `logout/`
-- [ ] 1.5.2 — Incluir `users/urls.py` no `core/urls.py` com prefixo `''` (sem prefixo de path)
+- [X] 1.5.1 — Criar `users/urls.py` com rotas: `register/`, `login/`, `logout/`
+- [X] 1.5.2 — Incluir `users/urls.py` no `core/urls.py` com prefixo `''` (sem prefixo de path)
 
 #### Tarefa 1.6 — Admin de usuários
-- [ ] 1.6.1 — Criar `users/admin.py` com `UserAdmin` customizado para exibir e-mail no lugar de username
-- [ ] 1.6.2 — Registrar o model `User` no admin com o `UserAdmin` customizado
+- [X] 1.6.1 — Criar `users/admin.py` com `UserAdmin` customizado para exibir e-mail no lugar de username
+- [X] 1.6.2 — Registrar o model `User` no admin com o `UserAdmin` customizado
 
 ---
 
