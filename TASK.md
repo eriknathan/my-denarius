@@ -133,66 +133,66 @@
 
 ---
 
-### 🏃 SPRINT 3 — Dashboard
+### ✅ SPRINT 3 — Dashboard
 
 #### Tarefa 3.1 — View do Dashboard
-- [ ] 3.1.1 — Criar app ou view `dashboard` em `core/views.py` ou app dedicado
-- [ ] 3.1.2 — Criar `DashboardView` (LoginRequiredMixin + TemplateView)
-- [ ] 3.1.3 — Calcular e passar ao contexto: saldo total de todas as contas do usuário
-- [ ] 3.1.4 — Calcular e passar ao contexto: total de receitas do mês atual
-- [ ] 3.1.5 — Calcular e passar ao contexto: total de despesas do mês atual
-- [ ] 3.1.6 — Buscar e passar ao contexto: últimas 5 transações do usuário
-- [ ] 3.1.7 — Criar rota `dashboard/` em `core/urls.py` mapeada para `DashboardView`
+- [X] 3.1.1 — Criar app ou view `dashboard` em `core/views.py` ou app dedicado
+- [X] 3.1.2 — Criar `DashboardView` (LoginRequiredMixin + TemplateView)
+- [X] 3.1.3 — Calcular e passar ao contexto: saldo total de todas as contas do usuário
+- [X] 3.1.4 — Calcular e passar ao contexto: total de receitas do mês atual
+- [X] 3.1.5 — Calcular e passar ao contexto: total de despesas do mês atual
+- [X] 3.1.6 — Buscar e passar ao contexto: últimas 5 transações do usuário
+- [X] 3.1.7 — Criar rota `dashboard/` em `core/urls.py` mapeada para `DashboardView`
 
 #### Tarefa 3.2 — Template do Dashboard
-- [ ] 3.2.1 — Criar `templates/dashboard/index.html` herdando de `base_app.html`
-- [ ] 3.2.2 — Criar grid de 3 cards de métricas: Saldo Total, Receitas do Mês, Despesas do Mês
-- [ ] 3.2.3 — Aplicar cor verde para receitas e vermelho para despesas nos cards
-- [ ] 3.2.4 — Criar tabela com as últimas 5 transações (descrição, valor, tipo, data, conta)
-- [ ] 3.2.5 — Adicionar link "Ver todas as transações" abaixo da tabela
-- [ ] 3.2.6 — Exibir mensagem de boas-vindas com o nome do usuário logado
+- [X] 3.2.1 — Criar `templates/dashboard/index.html` herdando de `base_app.html`
+- [X] 3.2.2 — Criar grid de 3 cards de métricas: Saldo Total, Receitas do Mês, Despesas do Mês
+- [X] 3.2.3 — Aplicar cor verde para receitas e vermelho para despesas nos cards
+- [X] 3.2.4 — Criar tabela com as últimas 5 transações (descrição, valor, tipo, data, conta)
+- [X] 3.2.5 — Adicionar link "Ver todas as transações" abaixo da tabela
+- [X] 3.2.6 — Exibir mensagem de boas-vindas com o nome do usuário logado
 
 ---
 
-### 🏃 SPRINT 4 — Contas Bancárias
+### ✅ SPRINT 4 — Contas Bancárias
 
 #### Tarefa 4.1 — Model de Conta (app `accounts`)
-- [ ] 4.1.1 — Criar `accounts/models.py` com classe `Account`
-- [ ] 4.1.2 — Definir campo `user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)`
-- [ ] 4.1.3 — Definir `name = CharField(max_length=100)`
-- [ ] 4.1.4 — Definir `account_type = CharField(max_length=20, choices=[...])` com opções: Corrente, Poupança, Dinheiro, Outro
-- [ ] 4.1.5 — Definir `initial_balance = DecimalField(max_digits=12, decimal_places=2, default=0)`
-- [ ] 4.1.6 — Adicionar `created_at` e `updated_at`
-- [ ] 4.1.7 — Definir `__str__` retornando o nome da conta
-- [ ] 4.1.8 — Criar e aplicar migration
+- [X] 4.1.1 — Criar `accounts/models.py` com classe `Account`
+- [X] 4.1.2 — Definir campo `user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)`
+- [X] 4.1.3 — Definir `name = CharField(max_length=100)`
+- [X] 4.1.4 — Definir `account_type = CharField(max_length=20, choices=[...])` com opções: Corrente, Poupança, Dinheiro, Outro
+- [X] 4.1.5 — Definir `initial_balance = DecimalField(max_digits=12, decimal_places=2, default=0)`
+- [X] 4.1.6 — Adicionar `created_at` e `updated_at`
+- [X] 4.1.7 — Definir `__str__` retornando o nome da conta
+- [X] 4.1.8 — Criar e aplicar migration
 
 #### Tarefa 4.2 — Formulário de Conta
-- [ ] 4.2.1 — Criar `accounts/forms.py` com `AccountForm` (ModelForm)
-- [ ] 4.2.2 — Definir `fields = ['name', 'account_type', 'initial_balance']`
-- [ ] 4.2.3 — Aplicar classes CSS do design system nos widgets
+- [X] 4.2.1 — Criar `accounts/forms.py` com `AccountForm` (ModelForm)
+- [X] 4.2.2 — Definir `fields = ['name', 'account_type', 'initial_balance']`
+- [X] 4.2.3 — Aplicar classes CSS do design system nos widgets
 
 #### Tarefa 4.3 — Views de Contas (CRUD)
-- [ ] 4.3.1 — Criar `accounts/views.py` com `AccountListView` (LoginRequiredMixin + ListView)
-- [ ] 4.3.2 — Filtrar queryset por `self.request.user` em `get_queryset()`
-- [ ] 4.3.3 — Criar `AccountCreateView` (LoginRequiredMixin + CreateView)
-- [ ] 4.3.4 — Sobrescrever `form_valid()` para associar `user = self.request.user`
-- [ ] 4.3.5 — Criar `AccountUpdateView` (LoginRequiredMixin + UpdateView)
-- [ ] 4.3.6 — Sobrescrever `get_queryset()` para filtrar por usuário (segurança)
-- [ ] 4.3.7 — Criar `AccountDeleteView` (LoginRequiredMixin + DeleteView)
-- [ ] 4.3.8 — Definir `success_url` para a listagem de contas
+- [X] 4.3.1 — Criar `accounts/views.py` com `AccountListView` (LoginRequiredMixin + ListView)
+- [X] 4.3.2 — Filtrar queryset por `self.request.user` em `get_queryset()`
+- [X] 4.3.3 — Criar `AccountCreateView` (LoginRequiredMixin + CreateView)
+- [X] 4.3.4 — Sobrescrever `form_valid()` para associar `user = self.request.user`
+- [X] 4.3.5 — Criar `AccountUpdateView` (LoginRequiredMixin + UpdateView)
+- [X] 4.3.6 — Sobrescrever `get_queryset()` para filtrar por usuário (segurança)
+- [X] 4.3.7 — Criar `AccountDeleteView` (LoginRequiredMixin + DeleteView)
+- [X] 4.3.8 — Definir `success_url` para a listagem de contas
 
 #### Tarefa 4.4 — URLs de Contas
-- [ ] 4.4.1 — Criar `accounts/urls.py` com rotas: `''` (list), `nova/` (create), `<pk>/editar/` (update), `<pk>/excluir/` (delete)
-- [ ] 4.4.2 — Incluir `accounts/urls.py` em `core/urls.py` com prefixo `contas/`
+- [X] 4.4.1 — Criar `accounts/urls.py` com rotas: `''` (list), `nova/` (create), `<pk>/editar/` (update), `<pk>/excluir/` (delete)
+- [X] 4.4.2 — Incluir `accounts/urls.py` em `core/urls.py` com prefixo `contas/`
 
 #### Tarefa 4.5 — Templates de Contas
-- [ ] 4.5.1 — Criar `templates/accounts/list.html` com tabela de contas e botões de ação
-- [ ] 4.5.2 — Adicionar botão "Nova Conta" no topo da listagem
-- [ ] 4.5.3 — Criar `templates/accounts/form.html` para criação e edição (mesmo template)
-- [ ] 4.5.4 — Criar `templates/accounts/confirm_delete.html` com mensagem de confirmação
+- [X] 4.5.1 — Criar `templates/accounts/list.html` com tabela de contas e botões de ação
+- [X] 4.5.2 — Adicionar botão "Nova Conta" no topo da listagem
+- [X] 4.5.3 — Criar `templates/accounts/form.html` para criação e edição (mesmo template)
+- [X] 4.5.4 — Criar `templates/accounts/confirm_delete.html` com mensagem de confirmação
 
 #### Tarefa 4.6 — Admin de Contas
-- [ ] 4.6.1 — Registrar `Account` em `accounts/admin.py` com `list_display = ['name', 'user', 'account_type', 'initial_balance']`
+- [X] 4.6.1 — Registrar `Account` em `accounts/admin.py` com `list_display = ['name', 'user', 'account_type', 'initial_balance']`
 
 ---
 
