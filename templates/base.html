@@ -12,14 +12,84 @@
 
   <!-- TailwindCSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    }
+  </script>
+  
+  <script>
+    // Script executado no <head> para evitar flicker (piscar branco) ao carregar a página
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    function toggleTheme() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+      }
+      updateThemeToggleUI();
+    }
+
+    function updateThemeToggleUI() {
+      const isDark = document.documentElement.classList.contains('dark');
+      document.querySelectorAll('.theme-toggle-pill').forEach(pill => {
+        const indicator = pill.querySelector('.theme-pill-indicator');
+        if (indicator) {
+          if (isDark) {
+            indicator.style.left = 'calc(100% - 34px)';
+          } else {
+            indicator.style.left = '4px';
+          }
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", updateThemeToggleUI);
+  </script>
 
   <style>
     body {
       font-family: 'Inter', sans-serif;
     }
+    /* Dark mode para inputs gerados pelo Django (widgets com classes inline) */
+    .dark input[type="text"],
+    .dark input[type="email"],
+    .dark input[type="password"],
+    .dark input[type="number"],
+    .dark input[type="date"],
+    .dark input[type="tel"],
+    .dark input[type="url"],
+    .dark input[type="search"],
+    .dark select,
+    .dark textarea {
+      background-color: rgb(30 41 59); /* slate-800 */
+      border-color: rgb(51 65 85); /* slate-700 */
+      color: rgb(226 232 240); /* slate-200 */
+    }
+    .dark input::placeholder,
+    .dark textarea::placeholder {
+      color: rgb(100 116 139); /* slate-500 */
+    }
+    .dark input:focus,
+    .dark select:focus,
+    .dark textarea:focus {
+      border-color: rgb(16 185 129); /* emerald-500 */
+      box-shadow: 0 0 0 1px rgb(16 185 129);
+    }
+    .dark select option {
+      background-color: rgb(30 41 59);
+      color: rgb(226 232 240);
+    }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
+<body class="bg-gray-50 text-gray-800 antialiased dark:bg-[#0f172a] dark:text-gray-200 transition-colors duration-200">
 
   <div class="max-w-7xl mx-auto px-4 pt-4">
     {% include 'partials/_messages.html' %}

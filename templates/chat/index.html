@@ -8,14 +8,14 @@
   <!-- Header -->
   <div class="flex items-center justify-between mb-4 shrink-0">
     <div>
-      <h1 class="text-xl sm:text-2xl font-bold text-gray-800">Chat de Ajuda</h1>
-      <p class="text-sm text-gray-500 mt-0.5">Pergunte sobre suas finanças em linguagem natural.</p>
+      <h1 class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 transition-colors duration-200">Chat de Ajuda</h1>
+      <p class="text-sm text-gray-500 dark:text-slate-400 mt-0.5">Pergunte sobre suas finanças em linguagem natural.</p>
     </div>
     <button id="btn-clear"
             type="button"
             class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium
-                   text-gray-500 hover:text-red-600 border border-gray-200 hover:border-red-200
-                   hover:bg-red-50 rounded-lg transition-colors duration-200">
+                   text-gray-500 dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 border border-gray-200 dark:border-slate-700 hover:border-red-200 dark:hover:border-red-500/30
+                   hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-colors duration-200">
       <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
@@ -27,14 +27,14 @@
   <!-- Suggested questions (shown only when history is empty) -->
   {% if not history %}
   <div id="suggestions" class="mb-4 shrink-0">
-    <p class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-2">Sugestões</p>
+    <p class="text-xs font-medium text-gray-400 dark:text-slate-500 uppercase tracking-wider mb-2">Sugestões</p>
     <div class="flex flex-wrap gap-2">
       {% for suggestion in suggestions %}
         <button type="button"
                 onclick="useSuggestion(this)"
                 data-question="{{ suggestion }}"
-                class="px-3 py-1.5 text-xs font-medium text-emerald-700 bg-emerald-50
-                       hover:bg-emerald-100 rounded-full border border-emerald-200
+                class="px-3 py-1.5 text-xs font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10
+                       hover:bg-emerald-100 dark:hover:bg-emerald-500/20 rounded-full border border-emerald-200 dark:border-emerald-500/20
                        transition-colors duration-200">
           {{ suggestion }}
         </button>
@@ -45,18 +45,18 @@
 
   <!-- Chat messages area -->
   <div id="chat-messages"
-       class="flex-1 overflow-y-auto bg-white rounded-xl border border-gray-200 p-4 space-y-4 mb-4 min-h-0">
+       class="flex-1 overflow-y-auto bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-4 space-y-4 mb-4 min-h-0 transition-colors duration-200">
 
     {% if not history %}
       <div id="empty-state" class="flex flex-col items-center justify-center h-full text-center">
-        <div class="p-4 bg-emerald-50 rounded-full mb-3">
-          <svg class="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="p-4 bg-emerald-50 dark:bg-emerald-500/10 rounded-full mb-3">
+          <svg class="w-8 h-8 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
           </svg>
         </div>
-        <p class="text-sm font-medium text-gray-600">Nenhuma mensagem ainda.</p>
-        <p class="text-xs text-gray-400 mt-1">Faça sua primeira pergunta sobre suas finanças!</p>
+        <p class="text-sm font-medium text-gray-600 dark:text-slate-300">Nenhuma mensagem ainda.</p>
+        <p class="text-xs text-gray-400 dark:text-slate-500 mt-1">Faça sua primeira pergunta sobre suas finanças!</p>
       </div>
     {% else %}
       {% for msg in history %}
@@ -68,7 +68,7 @@
           </div>
         {% else %}
           <div class="flex justify-start">
-            <div class="max-w-xs sm:max-w-md lg:max-w-lg px-4 py-2.5 bg-gray-100 text-gray-800 text-sm rounded-2xl rounded-tl-sm whitespace-pre-wrap">
+            <div class="max-w-xs sm:max-w-md lg:max-w-lg px-4 py-2.5 bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-200 text-sm rounded-2xl rounded-tl-sm whitespace-pre-wrap">
               {{ msg.content }}
             </div>
           </div>
@@ -79,11 +79,11 @@
     <!-- Typing indicator (hidden by default) -->
     <div id="typing-indicator" class="hidden">
       <div class="flex justify-start">
-        <div class="px-4 py-3 bg-gray-100 rounded-2xl rounded-tl-sm">
+        <div class="px-4 py-3 bg-gray-100 dark:bg-slate-700 rounded-2xl rounded-tl-sm">
           <div class="flex items-center gap-1">
-            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0ms"></div>
-            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 150ms"></div>
-            <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 300ms"></div>
+            <div class="w-2 h-2 bg-gray-400 dark:bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0ms"></div>
+            <div class="w-2 h-2 bg-gray-400 dark:bg-slate-400 rounded-full animate-bounce" style="animation-delay: 150ms"></div>
+            <div class="w-2 h-2 bg-gray-400 dark:bg-slate-400 rounded-full animate-bounce" style="animation-delay: 300ms"></div>
           </div>
         </div>
       </div>
@@ -101,8 +101,8 @@
              placeholder="Ex: Quanto gastei com alimentação esse mês?"
              maxlength="500"
              autocomplete="off"
-             class="flex-1 px-4 py-2.5 border border-gray-300 rounded-xl text-sm text-gray-800
-                    placeholder-gray-400 bg-white focus:outline-none focus:ring-2
+             class="flex-1 px-4 py-2.5 border border-gray-300 dark:border-slate-600 rounded-xl text-sm text-gray-800 dark:text-slate-200
+                    placeholder-gray-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2
                     focus:ring-emerald-500 focus:border-emerald-500 transition-colors duration-200">
       <button id="btn-send"
               type="submit"
@@ -116,7 +116,7 @@
         </svg>
       </button>
     </form>
-    <p class="text-xs text-gray-400 mt-1.5 text-right">Máximo 500 caracteres por mensagem.</p>
+    <p class="text-xs text-gray-400 dark:text-slate-500 mt-1.5 text-right">Máximo 500 caracteres por mensagem.</p>
   </div>
 
 </div>
@@ -143,9 +143,11 @@
     wrapper.className = role === 'user' ? 'flex justify-end' : 'flex justify-start';
 
     const bubble = document.createElement('div');
+    const isDark = document.documentElement.classList.contains('dark');
     bubble.className = role === 'user'
       ? 'max-w-xs sm:max-w-md lg:max-w-lg px-4 py-2.5 bg-emerald-600 text-white text-sm rounded-2xl rounded-tr-sm'
-      : 'max-w-xs sm:max-w-md lg:max-w-lg px-4 py-2.5 bg-gray-100 text-gray-800 text-sm rounded-2xl rounded-tl-sm whitespace-pre-wrap';
+      : 'max-w-xs sm:max-w-md lg:max-w-lg px-4 py-2.5 text-sm rounded-2xl rounded-tl-sm whitespace-pre-wrap '
+        + (isDark ? 'bg-slate-700 text-slate-200' : 'bg-gray-100 text-gray-800');
 
     bubble.textContent = content;
     wrapper.appendChild(bubble);

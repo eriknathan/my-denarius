@@ -6,7 +6,7 @@
 <div class="p-4 sm:p-6 w-full max-w-2xl">
 
   <div class="flex items-center justify-between mb-6">
-    <h1 class="text-xl sm:text-2xl font-bold text-gray-800">Meu Perfil</h1>
+    <h1 class="text-xl sm:text-2xl font-bold text-gray-800 dark:text-gray-100 transition-colors duration-200">Meu Perfil</h1>
     <a href="{% url 'profiles:update' %}"
        class="inline-flex items-center px-3 sm:px-4 py-2 bg-emerald-600 hover:bg-emerald-700
               text-white text-sm font-medium rounded-lg transition-colors duration-200
@@ -21,12 +21,12 @@
 
   {% include 'partials/_messages.html' %}
 
-  <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+  <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 overflow-hidden transition-colors duration-200">
 
     <!-- Cabeçalho com avatar -->
-    <div class="px-4 sm:px-6 py-5 sm:py-6 border-b border-gray-100 flex items-center gap-4">
-      <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-        <span class="text-lg sm:text-xl font-bold text-emerald-700">
+    <div class="px-4 sm:px-6 py-5 sm:py-6 border-b border-gray-100 dark:border-slate-700/50 flex items-center gap-4">
+      <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-100 dark:bg-emerald-500/10 flex items-center justify-center shrink-0">
+        <span class="text-lg sm:text-xl font-bold text-emerald-700 dark:text-emerald-400">
           {% if profile.user.first_name %}
             {{ profile.user.first_name|slice:":1"|upper }}{% if profile.user.last_name %}{{ profile.user.last_name|slice:":1"|upper }}{% endif %}
           {% else %}
@@ -35,54 +35,54 @@
         </span>
       </div>
       <div class="min-w-0">
-        <p class="text-base font-semibold text-gray-800 truncate">
+        <p class="text-base font-semibold text-gray-800 dark:text-gray-100 truncate">
           {% if profile.user.first_name or profile.user.last_name %}
             {{ profile.user.first_name }} {{ profile.user.last_name }}
           {% else %}
-            <span class="text-gray-400">Nome não informado</span>
+            <span class="text-gray-400 dark:text-slate-500">Nome não informado</span>
           {% endif %}
         </p>
-        <p class="text-sm text-gray-500 truncate">{{ profile.user.email }}</p>
+        <p class="text-sm text-gray-500 dark:text-slate-400 truncate">{{ profile.user.email }}</p>
       </div>
     </div>
 
     <!-- Dados do perfil -->
-    <div class="divide-y divide-gray-100">
+    <div class="divide-y divide-gray-100 dark:divide-slate-700/50">
 
       <div class="px-4 sm:px-6 py-4">
-        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Nome</p>
-        <p class="text-sm text-gray-800">
+        <p class="text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Nome</p>
+        <p class="text-sm text-gray-800 dark:text-gray-200">
           {% if profile.user.first_name %}
             {{ profile.user.first_name }}
           {% else %}
-            <span class="text-gray-400">Não informado</span>
+            <span class="text-gray-400 dark:text-slate-500">Não informado</span>
           {% endif %}
         </p>
       </div>
 
       <div class="px-4 sm:px-6 py-4">
-        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Sobrenome</p>
-        <p class="text-sm text-gray-800">
+        <p class="text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Sobrenome</p>
+        <p class="text-sm text-gray-800 dark:text-gray-200">
           {% if profile.user.last_name %}
             {{ profile.user.last_name }}
           {% else %}
-            <span class="text-gray-400">Não informado</span>
+            <span class="text-gray-400 dark:text-slate-500">Não informado</span>
           {% endif %}
         </p>
       </div>
 
       <div class="px-4 sm:px-6 py-4">
-        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">E-mail</p>
-        <p class="text-sm text-gray-800 break-all">{{ profile.user.email }}</p>
+        <p class="text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">E-mail</p>
+        <p class="text-sm text-gray-800 dark:text-gray-200 break-all">{{ profile.user.email }}</p>
       </div>
 
       <div class="px-4 sm:px-6 py-4">
-        <p class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Telefone</p>
-        <p class="text-sm text-gray-800">
+        <p class="text-xs font-semibold text-gray-500 dark:text-slate-400 uppercase tracking-wider mb-1">Telefone</p>
+        <p class="text-sm text-gray-800 dark:text-gray-200">
           {% if profile.phone %}
             {{ profile.phone }}
           {% else %}
-            <span class="text-gray-400">Não informado</span>
+            <span class="text-gray-400 dark:text-slate-500">Não informado</span>
           {% endif %}
         </p>
       </div>

@@ -1,5 +1,8 @@
+from decimal import Decimal
+
 from django.conf import settings
 from django.db import models
+from django.db.models import Sum
 
 
 class Account(models.Model):
@@ -33,3 +36,18 @@ class Account(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def current_balance(self):
+        """Saldo real: inicial + receitas - despesas."""
+        income = (
+            self.transactions
+            .filter(transaction_type='income')
+            .aggregate(total=Sum('amount'))['total']
+        ) or Decimal('0')
+        expenses = (
+            self.transactions
+            .filter(transaction_type='expense')
+            .aggregate(total=Sum('amount'))['total']
+        ) or Decimal('0')
+        return self.initial_balance + income - expenses

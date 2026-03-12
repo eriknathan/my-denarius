@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
@@ -27,7 +28,9 @@ class Transaction(models.Model):
         related_name='transactions',
         verbose_name='categoria',
     )
-    description = models.CharField(max_length=200, verbose_name='descrição')
+    description = models.CharField(
+        max_length=200, verbose_name='descrição',
+    )
     amount = models.DecimalField(
         max_digits=12,
         decimal_places=2,
@@ -39,7 +42,23 @@ class Transaction(models.Model):
         verbose_name='tipo',
     )
     date = models.DateField(verbose_name='data')
-    notes = models.TextField(blank=True, verbose_name='observações')
+    notes = models.TextField(
+        blank=True, verbose_name='observações',
+    )
+    is_recurring = models.BooleanField(
+        default=False,
+        verbose_name='recorrente',
+    )
+    recurrence_day = models.PositiveSmallIntegerField(
+        null=True,
+        blank=True,
+        verbose_name='dia de recorrência',
+        validators=[
+            MinValueValidator(1),
+            MaxValueValidator(31),
+        ],
+        help_text='Dia do mês (1-31)',
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -50,3 +69,4 @@ class Transaction(models.Model):
 
     def __str__(self):
         return f'{self.description} - R$ {self.amount}'
+

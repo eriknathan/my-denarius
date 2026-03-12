@@ -1,8 +1,14 @@
+import csv
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum
+from django.http import HttpResponse
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, ListView, UpdateView
+from django.views import View
+from django.views.generic import (
+    CreateView, DeleteView, ListView, UpdateView,
+)
 
 from accounts.models import Account
 from categories.models import Category
@@ -15,6 +21,7 @@ class TransactionListView(LoginRequiredMixin, ListView):
     model = Transaction
     template_name = 'transactions/list.html'
     context_object_name = 'transactions'
+    paginate_by = 20
 
     def get_queryset(self):
         qs = (
@@ -110,3 +117,65 @@ class TransactionDeleteView(LoginRequiredMixin, DeleteView):
     def form_valid(self, form):
         messages.success(self.request, 'Transação excluída com sucesso.')
         return super().form_valid(form)
+
+
+class TransactionExportCSVView(LoginRequiredMixin, View):
+    """Exporta transações filtradas em CSV."""
+
+    def get(self, request):
+        qs = (
+            Transaction.objects
+            .filter(user=request.user)
+            .select_related('account', 'category')
+        )
+
+        date_start = request.GET.get('date_start')
+        date_end = request.GET.get('date_end')
+        transaction_type = request.GET.get('transaction_type')
+        account = request.GET.get('account')
+        category = request.GET.get('category')
+
+        if date_start:
+            qs = qs.filter(date__gte=date_start)
+        if date_end:
+            qs = qs.filter(date__lte=date_end)
+        if transaction_type:
+            qs = qs.filter(transaction_type=transaction_type)
+        if account:
+            qs = qs.filter(account_id=account)
+        if category:
+            qs = qs.filter(category_id=category)
+
+        response = HttpResponse(
+            content_type='text/csv; charset=utf-8',
+        )
+        response['Content-Disposition'] = (
+            'attachment; filename="transacoes.csv"'
+        )
+        # BOM para Excel reconhecer UTF-8
+        response.write('\ufeff')
+
+        writer = csv.writer(response)
+        writer.writerow([
+            'Data', 'Descrição', 'Tipo',
+            'Valor', 'Conta', 'Categoria', 'Notas',
+        ])
+
+        type_map = {
+            'income': 'Receita',
+            'expense': 'Despesa',
+        }
+
+        for t in qs:
+            writer.writerow([
+                t.date.strftime('%d/%m/%Y'),
+                t.description,
+                type_map.get(t.transaction_type, t.transaction_type),
+                f'{t.amount:.2f}',
+                t.account.name if t.account else '',
+                t.category.name if t.category else '',
+                t.notes or '',
+            ])
+
+        return response
+
