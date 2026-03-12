@@ -281,21 +281,21 @@
 
 ---
 
-### 🏃 SPRINT 7 — Perfil do Usuário
+### ✅ SPRINT 7 — Perfil do Usuário
 
 #### Tarefa 7.1 — View de Perfil
-- [ ] 7.1.1 — Criar `profiles/views.py` com `ProfileDetailView` (LoginRequiredMixin + DetailView)
-- [ ] 7.1.2 — Sobrescrever `get_object()` para retornar `request.user.profile`
-- [ ] 7.1.3 — Criar `ProfileUpdateView` (LoginRequiredMixin + UpdateView) para edição do perfil e dados do usuário
-- [ ] 7.1.4 — Criar `profiles/forms.py` com `ProfileForm` (campos de `Profile`) e `UserUpdateForm` (campos de `User`: `first_name`, `last_name`)
+- [X] 7.1.1 — Criar `profiles/views.py` com `ProfileDetailView` (LoginRequiredMixin + DetailView)
+- [X] 7.1.2 — Sobrescrever `get_object()` para retornar `request.user.profile`
+- [X] 7.1.3 — Criar `ProfileUpdateView` (LoginRequiredMixin + UpdateView) para edição do perfil e dados do usuário
+- [X] 7.1.4 — Criar `profiles/forms.py` com `ProfileForm` (campos de `Profile`) e `UserUpdateForm` (campos de `User`: `first_name`, `last_name`)
 
 #### Tarefa 7.2 — URLs de Perfil
-- [ ] 7.2.1 — Criar `profiles/urls.py` com rotas: `''` (detail), `editar/` (update)
-- [ ] 7.2.2 — Incluir em `core/urls.py` com prefixo `perfil/`
+- [X] 7.2.1 — Criar `profiles/urls.py` com rotas: `''` (detail), `editar/` (update)
+- [X] 7.2.2 — Incluir em `core/urls.py` com prefixo `perfil/`
 
 #### Tarefa 7.3 — Templates de Perfil
-- [ ] 7.3.1 — Criar `templates/profiles/detail.html` exibindo dados do usuário e perfil
-- [ ] 7.3.2 — Criar `templates/profiles/form.html` para edição com dois formulários no mesmo template
+- [X] 7.3.1 — Criar `templates/profiles/detail.html` exibindo dados do usuário e perfil
+- [X] 7.3.2 — Criar `templates/profiles/form.html` para edição com dois formulários no mesmo template
 
 ---
 

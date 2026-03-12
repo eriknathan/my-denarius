@@ -1,0 +1,97 @@
+{% extends 'base_app.html' %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block app_content %}
+<div class="p-6 max-w-2xl">
+
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold text-gray-800">Editar Perfil</h1>
+    <a href="{% url 'profiles:detail' %}"
+       class="inline-flex items-center px-4 py-2 border border-gray-300
+              bg-white hover:bg-gray-50 text-gray-700 text-sm font-medium
+              rounded-lg transition-colors duration-200">
+      Voltar
+    </a>
+  </div>
+
+  {% include 'partials/_messages.html' %}
+
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+    <form method="post" action="{% url 'profiles:update' %}">
+      {% csrf_token %}
+
+      <!-- Dados pessoais -->
+      <div class="mb-6">
+        <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 pb-2 border-b border-gray-100">
+          Dados Pessoais
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <div>
+            <label for="{{ user_form.first_name.id_for_label }}"
+                   class="block text-sm font-medium text-gray-700 mb-1">
+              Nome
+            </label>
+            {{ user_form.first_name }}
+            {% if user_form.first_name.errors %}
+              <p class="mt-1 text-xs text-red-500">{{ user_form.first_name.errors.0 }}</p>
+            {% endif %}
+          </div>
+
+          <div>
+            <label for="{{ user_form.last_name.id_for_label }}"
+                   class="block text-sm font-medium text-gray-700 mb-1">
+              Sobrenome
+            </label>
+            {{ user_form.last_name }}
+            {% if user_form.last_name.errors %}
+              <p class="mt-1 text-xs text-red-500">{{ user_form.last_name.errors.0 }}</p>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Contato -->
+      <div class="mb-6">
+        <h2 class="text-sm font-semibold text-gray-700 uppercase tracking-wider mb-4 pb-2 border-b border-gray-100">
+          Contato
+        </h2>
+        <div class="max-w-xs">
+
+          <div>
+            <label for="{{ form.phone.id_for_label }}"
+                   class="block text-sm font-medium text-gray-700 mb-1">
+              Telefone
+            </label>
+            {{ form.phone }}
+            {% if form.phone.errors %}
+              <p class="mt-1 text-xs text-red-500">{{ form.phone.errors.0 }}</p>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Ações -->
+      <div class="flex gap-3 pt-2">
+        <button type="submit"
+                class="inline-flex items-center px-4 py-2 bg-emerald-600 hover:bg-emerald-700
+                       text-white text-sm font-medium rounded-lg transition-colors duration-200
+                       focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2">
+          Salvar
+        </button>
+        <a href="{% url 'profiles:detail' %}"
+           class="inline-flex items-center px-4 py-2 border border-gray-300
+                  bg-white hover:bg-gray-50 text-gray-700 text-sm font-medium
+                  rounded-lg transition-colors duration-200">
+          Cancelar
+        </a>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+{% endblock %}

@@ -19,3 +19,13 @@ The `profiles` app owns a single `Profile` model with a OneToOne relation to `AU
 - `__str__` returns `'Perfil de {user.email}'` (Portuguese UI string)
 - Migration: `profiles/migrations/0001_initial.py`
 - Admin: `ProfileAdmin` with `list_display`, `list_filter`, `search_fields`, `raw_id_fields`
+
+## Views and URLs (Sprint 7)
+
+- `ProfileDetailView`: `LoginRequiredMixin + DetailView`, overrides `get_object()` to return `request.user.profile`. Template: `profiles/detail.html`.
+- `ProfileUpdateView`: `LoginRequiredMixin + View` (plain `View`, not `UpdateView`) — handles two forms simultaneously. Overrides `get()` and `post()` manually.
+- Two forms in `profiles/forms.py`: `ProfileForm` (ModelForm on `Profile`, field: `phone`) and `UserUpdateForm` (ModelForm on `User`, fields: `first_name`, `last_name`).
+- `UserUpdateForm` uses `get_user_model()` at module level (acceptable in forms.py, not in field definitions).
+- Both forms saved in `post()` before redirecting. `messages.success()` added on save.
+- URL namespace: `profiles`. Routes: `perfil/` (detail) and `perfil/editar/` (update). Included in `core/urls.py` with prefix `perfil/`.
+- Templates in `templates/profiles/detail.html` and `templates/profiles/form.html`. Template variable `user_form` for `UserUpdateForm`, `form` for `ProfileForm`.
