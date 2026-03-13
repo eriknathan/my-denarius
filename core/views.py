@@ -130,6 +130,41 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         context['chart_month_expenses'] = json.dumps(
             month_expenses_list,
         )
+
+        # Alertas de orçamento: metas com >= 80% do limite utilizado no mês atual
+        budget_alerts = []
+        try:
+            Budget = apps.get_model('budgets', 'Budget')
+            budgets_this_month = Budget.objects.filter(
+                user=user,
+                month__year=today.year,
+                month__month=today.month,
+            ).select_related('category')
+            for budget in budgets_this_month:
+                spent = (
+                    Transaction.objects.filter(
+                        user=user,
+                        transaction_type='expense',
+                        category=budget.category,
+                        date__year=today.year,
+                        date__month=today.month,
+                    ).aggregate(total=Sum('amount'))['total']
+                    or Decimal('0.00')
+                )
+                if budget.amount > 0:
+                    percentage = int((spent / budget.amount) * 100)
+                else:
+                    percentage = 0
+                if percentage >= 80:
+                    budget_alerts.append({
+                        'category': budget.category.name,
+                        'percentage': min(percentage, 999),
+                        'over_budget': spent > budget.amount,
+                    })
+        except LookupError:
+            pass
+
+        context['budget_alerts'] = budget_alerts
         return context
 
 

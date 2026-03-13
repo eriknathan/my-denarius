@@ -3,22 +3,39 @@
 {% block title %}Criar conta{% endblock %}
 
 {% block content %}
-<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4 py-8 sm:py-12">
+<div class="relative min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#0f172a] px-4 py-8 sm:py-12 transition-colors duration-200">
+
+  <!-- Toggle de tema -->
+  <div class="absolute top-4 right-4">
+    <button onclick="toggleTheme()"
+            class="p-2 rounded-lg text-gray-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors duration-200"
+            title="Alternar tema">
+      <svg id="theme-icon-light" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M18.364 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/>
+      </svg>
+      <svg id="theme-icon-dark" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+      </svg>
+    </button>
+  </div>
+
   <div class="w-full max-w-md">
 
     <!-- Logo -->
     <div class="text-center mb-8">
       <a href="{% url 'home' %}">
         <span class="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">
-          my-denarius
+          Denarius
         </span>
       </a>
-      <h1 class="mt-3 text-2xl font-bold text-gray-800">Crie sua conta</h1>
-      <p class="mt-1 text-sm text-gray-500">Comece a controlar suas finanças gratuitamente</p>
+      <h1 class="mt-3 text-2xl font-bold text-gray-800 dark:text-gray-100">Crie sua conta</h1>
+      <p class="mt-1 text-sm text-gray-500 dark:text-slate-400">Comece a controlar suas finanças gratuitamente</p>
     </div>
 
     <!-- Card do formulário -->
-    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 sm:p-8">
+    <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700 p-6 sm:p-8 transition-colors duration-200">
 
       {% include 'partials/_messages.html' %}
 
@@ -33,7 +50,7 @@
             <!-- Nome -->
             <div>
               <label for="{{ form.first_name.id_for_label }}"
-                     class="block text-sm font-medium text-gray-700 mb-1">
+                     class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
                 {{ form.first_name.label }}
               </label>
               {{ form.first_name }}
@@ -45,7 +62,7 @@
             <!-- Sobrenome -->
             <div>
               <label for="{{ form.last_name.id_for_label }}"
-                     class="block text-sm font-medium text-gray-700 mb-1">
+                     class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
                 {{ form.last_name.label }}
               </label>
               {{ form.last_name }}
@@ -59,7 +76,7 @@
           <!-- E-mail -->
           <div>
             <label for="{{ form.email.id_for_label }}"
-                   class="block text-sm font-medium text-gray-700 mb-1">
+                   class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
               {{ form.email.label }}
             </label>
             {{ form.email }}
@@ -71,7 +88,7 @@
           <!-- Senha -->
           <div>
             <label for="{{ form.password1.id_for_label }}"
-                   class="block text-sm font-medium text-gray-700 mb-1">
+                   class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
               {{ form.password1.label }}
             </label>
             {{ form.password1 }}
@@ -83,7 +100,7 @@
           <!-- Confirmar senha -->
           <div>
             <label for="{{ form.password2.id_for_label }}"
-                   class="block text-sm font-medium text-gray-700 mb-1">
+                   class="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">
               {{ form.password2.label }}
             </label>
             {{ form.password2 }}
@@ -113,7 +130,7 @@
     </div>
 
     <!-- Link para login -->
-    <p class="mt-6 text-center text-sm text-gray-500">
+    <p class="mt-6 text-center text-sm text-gray-500 dark:text-slate-400">
       Já tem conta?
       <a href="{% url 'users:login' %}"
          class="font-medium text-emerald-600 hover:text-emerald-700 transition-colors duration-200">
@@ -123,4 +140,40 @@
 
   </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var isDark = document.documentElement.classList.contains('dark');
+    var iconLight = document.getElementById('theme-icon-light');
+    var iconDark = document.getElementById('theme-icon-dark');
+    if (iconLight && iconDark) {
+      if (isDark) {
+        iconLight.classList.remove('hidden');
+        iconDark.classList.add('hidden');
+      } else {
+        iconLight.classList.add('hidden');
+        iconDark.classList.remove('hidden');
+      }
+    }
+  });
+
+  var _origToggleTheme = window.toggleTheme;
+  window.toggleTheme = function() {
+    _origToggleTheme();
+    var isDark = document.documentElement.classList.contains('dark');
+    var iconLight = document.getElementById('theme-icon-light');
+    var iconDark = document.getElementById('theme-icon-dark');
+    if (iconLight && iconDark) {
+      if (isDark) {
+        iconLight.classList.remove('hidden');
+        iconDark.classList.add('hidden');
+      } else {
+        iconLight.classList.add('hidden');
+        iconDark.classList.remove('hidden');
+      }
+    }
+  };
+</script>
 {% endblock %}

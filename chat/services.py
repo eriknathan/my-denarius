@@ -107,7 +107,7 @@ def build_system_prompt(financial_context):
         default=_decimal_serializer,
     )
 
-    return f"""Você é um assistente financeiro pessoal integrado ao sistema my-denarius.
+    return f"""Você é um assistente financeiro pessoal integrado ao sistema Denarius.
 Seu papel é responder perguntas sobre as finanças do usuário de forma clara, objetiva e em português brasileiro.
 
 Regras:

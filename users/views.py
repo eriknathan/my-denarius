@@ -14,13 +14,13 @@ class RegisterView(CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('/')
+            return redirect(reverse_lazy('dashboard'))
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
         user = form.save()
         login(self.request, user, backend='users.backends.EmailBackend')
-        return redirect('/dashboard/')
+        return redirect(reverse_lazy('dashboard'))
 
 
 class LoginView(FormView):
@@ -30,7 +30,7 @@ class LoginView(FormView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return redirect('/dashboard/')
+            return redirect(reverse_lazy('dashboard'))
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
@@ -39,10 +39,10 @@ class LoginView(FormView):
         user = authenticate(self.request, username=email, password=password)
         if user is not None:
             login(self.request, user)
-            return redirect('/dashboard/')
+            return redirect(reverse_lazy('dashboard'))
         form.add_error(None, 'E-mail ou senha inválidos.')
         return self.form_invalid(form)
 
 
 class LogoutView(BaseLogoutView):
-    next_page = '/'
+    next_page = reverse_lazy('home')

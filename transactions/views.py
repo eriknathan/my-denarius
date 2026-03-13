@@ -47,6 +47,10 @@ class TransactionListView(LoginRequiredMixin, ListView):
         if category:
             qs = qs.filter(category_id=category)
 
+        q = self.request.GET.get('q', '').strip()
+        if q:
+            qs = qs.filter(description__icontains=q)
+
         return qs
 
     def get_context_data(self, **kwargs):
@@ -67,6 +71,7 @@ class TransactionListView(LoginRequiredMixin, ListView):
         context['balance'] = total_income - total_expense
         context['accounts'] = Account.objects.filter(user=self.request.user)
         context['categories'] = Category.objects.filter(user=self.request.user)
+        context['q'] = self.request.GET.get('q', '')
         return context
 
 

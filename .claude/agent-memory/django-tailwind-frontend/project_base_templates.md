@@ -15,14 +15,29 @@ It includes TailwindCSS via CDN (`https://cdn.tailwindcss.com`), Inter via Googl
 
 `templates/base_app.html` extends `base.html` and overrides `{% block content %}` to create the sidebar layout (`flex min-h-screen`). It includes `partials/_sidebar.html` and defines `{% block app_content %}` for child templates to fill. **Child templates that extend `base_app.html` must override `{% block app_content %}`, not `{% block content %}`.**
 
-`templates/partials/_messages.html` renders Django messages with conditional CSS by tag:
-- `success` → `bg-emerald-50 text-emerald-700 border border-emerald-200`
-- `error` → `bg-red-50 text-red-700 border border-red-200`
-- `warning` → `bg-yellow-50 text-yellow-700 border border-yellow-200`
-- default (info) → `bg-blue-50 text-blue-700 border border-blue-200`
+`templates/partials/_messages.html` renders Django messages with:
+- `data-message` attribute on each message div (used by auto-dismiss JS)
+- `flex items-start gap-3` layout with a close button (×) on the right
+- Auto-dismiss after 4 seconds via `dismissMessage()` JS function inside the partial
+- Dark mode variants on all colors: e.g. `dark:bg-emerald-900/20 dark:text-emerald-400 dark:border-emerald-800`
+- Tags: success/error/warning/default(info)
 
 `templates/partials/_sidebar.html` is included by `base_app.html`. It renders the full sidebar with logo, nav links (Dashboard, Contas, Categorias, Transações, Perfil), and logout. Active state uses `request.resolver_match.app_name`.
 
+## Delete confirmation modal (base_app.html)
+- Modal `id="delete-modal"` lives inside `{% block content %}` in `base_app.html`, placed after the main layout div but before `{% endblock %}`
+- JS functions `openDeleteModal(url, title, body)` and `closeDeleteModal()` are in `{% block extra_js %}`
+- Escape key handler is consolidated — closes both modal and sidebar
+- List pages call `openDeleteModal()` from `<button type="button" onclick="...">` instead of linking to the confirm_delete URL
+
+## Dark mode toggle (public pages)
+Pages extending `base.html` that need a theme toggle:
+- Add `relative` to the outermost container div
+- Place `<div class="absolute top-4 right-4">` with sun/moon button
+- Sun SVG: `id="theme-icon-light"` (starts `hidden`); Moon SVG: `id="theme-icon-dark"` (visible)
+- Add `{% block extra_js %}` with DOMContentLoaded listener to sync icons, and a wrapper around `window.toggleTheme` to toggle icons on click
+- `home.html`: toggle button is in the navbar flex row instead (not absolute positioned)
+
 **Why:** `base_app.html` needs its own inner block name (`app_content`) because it overrides `content` to inject the sidebar wrapper — if children also overrode `content`, the sidebar would be lost.
 
-**How to apply:** Public pages extend `base.html` and override `{% block content %}`. Authenticated pages extend `base_app.html` and override `{% block app_content %}`. Do not re-include `_messages.html` — they inherit it from `base.html` automatically.
+**How to apply:** Public pages extend `base.html` and override `{% block content %}`. Authenticated pages extend `base_app.html` and override `{% block app_content %}`. Do not re-include `_messages.html` on list/form pages that already inherit from base — it's injected by `base.html` at the top of every page. Individual templates that include `_messages.html` explicitly (like login, accounts/list) are intentional for positioning it close to the form/action area.

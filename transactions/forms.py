@@ -2,24 +2,9 @@ from django import forms
 
 from accounts.models import Account
 from categories.models import Category
+from core.form_css import INPUT_CLASS, NUMBER_CLASS, TEXTAREA_CLASS
 
 from .models import Transaction
-
-INPUT_CLASS = (
-    'block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm '
-    'text-gray-900 placeholder-gray-400 focus:border-emerald-500 '
-    'focus:outline-none focus:ring-1 focus:ring-emerald-500'
-)
-NUMBER_CLASS = (
-    'block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm '
-    'text-gray-900 focus:border-emerald-500 focus:outline-none '
-    'focus:ring-1 focus:ring-emerald-500'
-)
-TEXTAREA_CLASS = (
-    'block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm '
-    'text-gray-900 placeholder-gray-400 resize-none focus:border-emerald-500 '
-    'focus:outline-none focus:ring-1 focus:ring-emerald-500'
-)
 
 
 class TransactionForm(forms.ModelForm):
@@ -39,6 +24,8 @@ class TransactionForm(forms.ModelForm):
             'account',
             'category',
             'notes',
+            'is_recurring',
+            'recurrence_day',
         ]
         widgets = {
             'description': forms.TextInput(attrs={
@@ -67,5 +54,15 @@ class TransactionForm(forms.ModelForm):
                 'class': TEXTAREA_CLASS,
                 'rows': 3,
                 'placeholder': 'Observações (opcional)',
+            }),
+            'is_recurring': forms.CheckboxInput(attrs={
+                'class': 'h-4 w-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500',
+                'id': 'id_is_recurring',
+            }),
+            'recurrence_day': forms.NumberInput(attrs={
+                'class': INPUT_CLASS,
+                'min': '1',
+                'max': '31',
+                'placeholder': 'Dia (1-31)',
             }),
         }

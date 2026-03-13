@@ -1,13 +1,37 @@
 {% if messages %}
   <div class="space-y-2 mb-4">
     {% for message in messages %}
-      <div class="px-4 py-3 rounded-lg text-sm font-medium
-                  {% if message.tags == 'success' %}bg-emerald-50 text-emerald-700 border border-emerald-200
-                  {% elif message.tags == 'error' %}bg-red-50 text-red-700 border border-red-200
-                  {% elif message.tags == 'warning' %}bg-yellow-50 text-yellow-700 border border-yellow-200
-                  {% else %}bg-blue-50 text-blue-700 border border-blue-200{% endif %}">
-        {{ message }}
+      <div data-message
+           class="flex items-start gap-3 px-4 py-3 rounded-lg text-sm font-medium
+                  {% if message.tags == 'success' %}bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800
+                  {% elif message.tags == 'error' %}bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800
+                  {% elif message.tags == 'warning' %}bg-yellow-50 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-500 border border-yellow-200 dark:border-yellow-800
+                  {% else %}bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800{% endif %}">
+        <span class="flex-1">{{ message }}</span>
+        <button type="button"
+                onclick="dismissMessage(this.parentElement)"
+                class="ml-auto shrink-0 p-1 rounded hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                aria-label="Fechar">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
       </div>
     {% endfor %}
   </div>
 {% endif %}
+
+<script>
+function dismissMessage(el) {
+  el.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(-8px)';
+  setTimeout(function() { el.remove(); }, 300);
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var msgs = document.querySelectorAll('[data-message]');
+  msgs.forEach(function(msg) {
+    setTimeout(function() { dismissMessage(msg); }, 4000);
+  });
+});
+</script>

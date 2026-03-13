@@ -1,17 +1,8 @@
 from django import forms
 
-from .models import Account
+from core.form_css import INPUT_CLASS, NUMBER_CLASS
 
-INPUT_CLASS = (
-    'block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm '
-    'text-gray-900 placeholder-gray-400 focus:border-emerald-500 '
-    'focus:outline-none focus:ring-1 focus:ring-emerald-500'
-)
-NUMBER_CLASS = (
-    'block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm '
-    'text-gray-900 focus:border-emerald-500 focus:outline-none '
-    'focus:ring-1 focus:ring-emerald-500'
-)
+from .models import Account
 
 
 class AccountForm(forms.ModelForm):
